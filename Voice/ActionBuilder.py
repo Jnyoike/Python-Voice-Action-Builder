@@ -1,5 +1,5 @@
 from Action import Action
-from Actions import Say, GetDigits, Play
+from Actions import Say, GetDigits, Play, Record, Dial, Reject
 
 class ActionBuilder():
 	def __init__(self):
@@ -19,7 +19,8 @@ class ActionBuilder():
 
 def main():
 	act = ActionBuilder()
-	xml_string = act.action(Say("Hi")).action(GetDigits(Play("url.com"))).build()
+	xml_string = act.action(Reject()).build()
 	print(str(xml_string))
+
 
 main()
