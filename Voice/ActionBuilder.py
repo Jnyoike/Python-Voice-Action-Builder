@@ -1,5 +1,5 @@
 from Action import Action
-from Actions import Say, GetDigits, Play, Record, Dial, Reject
+from Actions import Say, GetDigits, Play, Record, Dial, Reject, Redirect, Enqueue, Dequeue, Conference
 
 class ActionBuilder():
 	def __init__(self):
@@ -17,10 +17,4 @@ class ActionBuilder():
 		return self
 
 
-def main():
-	act = ActionBuilder()
-	xml_string = act.action(Reject()).build()
-	print(str(xml_string))
 
-
-main()

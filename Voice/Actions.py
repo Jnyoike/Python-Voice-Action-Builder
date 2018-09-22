@@ -1,4 +1,8 @@
 from Action import Action
+class Conference(Action):
+	def __init__(self):
+		Action.__init__(self, tag="Conference")
+		
 class Dial(Action):
 	def __init__(self, phoneNumbers, record=None, sequential=None, callerId=None, ringBackTone=None, maxDuration=None):
 		phoneNumbers = '"' + phoneNumbers + '"'
@@ -19,6 +23,23 @@ class Dial(Action):
 			maxDuration = '"' + maxDuration + '"'
 			attributes['maxDuration'] = maxDuration
 		Action.__init__(self, tag="Dial", attributes=attributes)
+
+class Enqueue(Action):
+	def __init__(self, name=None, holdMusic=None):
+		attributes = {}
+		if name is not None:
+			name = '"' + name + '"'
+			attributes['name'] = name
+		if holdMusic is not None:
+			holdMusic = '"' + holdMusic + '"'
+			attributes['holdMusic'] = holdMusic
+		Action.__init__(self, tag="Enqueue", attributes=attributes)
+
+class Dequeue(Action):
+	def __init__(self, phoneNumber):
+		phoneNumber = '"' + phoneNumber + '"'
+		attributes = {'phoneNumber': phoneNumber}
+		Action.__init__(self, tag="Dequeue", attributes=attributes)
 
 class GetDigits(Action):
 	def __init__(self, say = None, play=None, numDigits=None, timeout="30", finishOnKey=None, callbackUrl=None):
@@ -76,6 +97,10 @@ class Record(Action):
 			attributes['trimSilence'] = trimSilence
 
 		Action.__init__(self, tag="Record", children=children, attributes=attributes)
+
+class Redirect(Action):
+	def __init__(self, url):
+		Action.__init__(self, tag="Redirect", text=url)
 
 class Reject(Action):
 	def __init__(self):
